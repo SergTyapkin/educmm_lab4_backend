@@ -26,6 +26,9 @@ def home():
 def eig():
     try:
         requestJson = request.get_json()
+        print(request)
+        print(requestJson)
+        print(request.form)
         matrix = requestJson['matrix']
     except:
         return make_response("Не удалось сериализовать json", HTTP_INVALID_DATA)
