@@ -30,7 +30,11 @@ def eig():
     except:
         return make_response("Не удалось сериализовать json", HTTP_INVALID_DATA)
 
-    return make_response(jsonify(np_linalg.eig(matrix)))
+    eig_values, eig_vectors = np_linalg.eig(matrix)
+    return make_response(jsonify({
+        "values": eig_values.tolist(),
+        "vectors": eig_vectors.tolist()
+    }))
 
 
 @app.route("/svd", methods=["POST"])
@@ -41,7 +45,12 @@ def svd():
     except:
         return make_response("Не удалось сериализовать json", HTTP_INVALID_DATA)
 
-    return make_response(jsonify(np_linalg.svd(matrix, full_matrices=True)))
+    eig_vectors_L, eig_values, eig_vectors_R = np_linalg.svd(matrix, full_matrices=True)
+    return make_response(jsonify({
+        "left": eig_vectors_L.tolist(),
+        "values": eig_values.tolist(),
+        "right": eig_vectors_R.tolist()
+    }))
 
 
 if __name__ == '__main__':
