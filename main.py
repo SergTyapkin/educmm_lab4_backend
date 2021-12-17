@@ -30,7 +30,7 @@ def eig():
     except:
         return make_response("Не удалось сериализовать json", HTTP_INVALID_DATA)
 
-    return make_response(jsonify(np.linalg.eig(matrix)))
+    return make_response(jsonify(np_linalg.eig(matrix)))
 
 
 @app.route("/svd", methods=["POST"])
