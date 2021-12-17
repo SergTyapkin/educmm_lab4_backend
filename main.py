@@ -25,7 +25,7 @@ def home():
 @app.route("/eig", methods=["POST"])
 def eig():
     try:
-        requestJson = request.get_json()
+        requestJson = request.get_json(force=True)
         print(request)
         print(requestJson)
         print(request.form)
@@ -39,7 +39,7 @@ def eig():
 @app.route("/svd", methods=["POST"])
 def svd():
     try:
-        requestJson = request.get_json()
+        requestJson = request.get_json(force=True)
         matrix = requestJson['matrix']
     except:
         return make_response("Не удалось сериализовать json", HTTP_INVALID_DATA)
