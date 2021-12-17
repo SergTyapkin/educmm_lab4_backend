@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, request, jsonify, make_response
-import numpy as np
+import numpy.linalg as np_linalg
 
 from utils import *
 
@@ -30,7 +30,7 @@ def eig():
     except:
         return make_response("Не удалось сериализовать json", HTTP_INVALID_DATA)
 
-    return make_response(jsonify(np.linalg.eig(matrix))
+    return make_response(jsonify(np.linalg.eig(matrix)))
 
 
 @app.route("/svd", methods=["POST"])
@@ -41,7 +41,7 @@ def svd():
     except:
         return make_response("Не удалось сериализовать json", HTTP_INVALID_DATA)
 
-    return make_response(jsonify(np.linalg.svd(matrix, full_matrices=True))
+    return make_response(jsonify(np_linalg.svd(matrix, full_matrices=True)))
 
 
 if __name__ == '__main__':
